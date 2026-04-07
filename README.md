@@ -1,96 +1,98 @@
 # Network Reconstruction Project in C
 
-Projet de structures de donnees en C centre sur la reconstruction et l'analyse d'un reseau a partir de chaines de points.
+[Version française](./README.md)
 
-Le projet manipule des fichiers `.cha` decrivant des chaines geometriques, puis reconstruit un reseau selon plusieurs structures de donnees. Il produit aussi des sorties texte et des visualisations HTML/SVG pour observer les donnees d'entree et les reseaux reconstruits.
+C data structures project focused on reconstructing and analysing a network from chains of points.
 
-## Contenu du depot
+The project works with `.cha` files describing geometric chains, then reconstructs a network using several data structures. It also produces text outputs and HTML/SVG visualizations to inspect both the input data and the reconstructed networks.
 
-- `implementation/` : code source C, jeux de donnees, sorties du projet, makefile
+## Repository Contents
 
-## Organisation de l'implementation
+- `implementation/`: C source code, datasets, project outputs, and the `Makefile`
 
-- `implementation/src/` : fichiers source C
-- `implementation/include/` : fichiers d'en-tete (structures de données, fonctions, description des fonctions, etc.)
-- `implementation/data/` : jeux de donnees `.cha`
-- `implementation/results/` : sorties texte `.res` et mesures de temps
-- `implementation/visualizations/` : visualisations `.html`
-- `implementation/Makefile` : compilation des executables principaux
+## Implementation Layout
 
-Cette separation permet de distinguer clairement :
-- les donnees d'entree
-- les resultats calcules
-- les affichages graphiques
+- `implementation/src/`: C source files
+- `implementation/include/`: header files
+- `implementation/data/`: `.cha` input datasets
+- `implementation/results/`: `.res` outputs and timing measurements
+- `implementation/visualizations/`: `.html` visualizations
+- `implementation/Makefile`: build file for the main executables
 
-### Donnees d'entree
+This separation makes it easier to distinguish:
+- input data
+- computed results
+- visual outputs
 
-Les fichiers `.cha` de `implementation/data/` decrivent un ensemble de chaines de points avec :
-- le nombre de chaines
-- le parametre `gamma`
-- les points de chaque chaine
+### Input Data
 
-Jeux de donnees principaux :
-- `00014_burma.cha` : petite instance, utile pour tester rapidement
-- `05000_USA-road-d-NY.cha` : instance intermediaire
-- `07397_pla.cha` : instance volumineuse
+The `.cha` files in `implementation/data/` describe a set of point chains with:
+- the number of chains
+- the `gamma` parameter
+- the points of each chain
 
-### Sorties texte
+Main datasets:
+- `00014_burma.cha`: small instance, useful for quick checks
+- `05000_USA-road-d-NY.cha`: medium-to-large road network instance
+- `07397_pla.cha`: another large instance used in the project
 
-Les fichiers `.res` de `implementation/results/` decrivent le reseau reconstruit :
-- nombre de noeuds
-- nombre de liaisons
-- nombre de commodites
-- valeur de `gamma`
-- liste des noeuds `v`
-- liste des liaisons `l`
-- liste des commodites `k`
+### Text Outputs
 
-### Visualisations
+The `.res` files in `implementation/results/` describe the reconstructed network:
+- number of nodes
+- number of links
+- number of commodities
+- `gamma`
+- node list `v`
+- link list `l`
+- commodity list `k`
 
-Les programmes generent des fichiers `.html` dans `implementation/visualizations/`. Ces fichiers contiennent du SVG pour afficher les chaines ou les reseaux.
+### Visualizations
 
-Exemples de sorties visuelles :
+The programs generate `.html` files in `implementation/visualizations/`. These files embed SVG content to display chains or reconstructed networks.
+
+Examples:
 - `visualizations/00014_burma.html`
 - `visualizations/07397_pla.html`
 - `visualizations/05000_USA-road-d-NY.html`
 
-## Compilation
+## Build
 
-Depuis le dossier `implementation/` :
+From the `implementation/` directory:
 
 ```bash
 make
 ```
 
-Executables generes :
+Generated executables:
 - `ChaineMain`
 - `ReconstitueReseau`
 - `TempsCalcul`
 - `GrapheMain`
 
-## Methodes de reconstruction
+## Reconstruction Methods
 
-Le programme `ReconstitueReseau` attend un second parametre entier qui choisit la structure de donnees utilisee pour reconstruire le reseau :
+`ReconstitueReseau` expects a second integer parameter that selects the data structure used to reconstruct the network:
 
-- `1` : reconstruction par liste chainee
-- `2` : reconstruction par table de hachage
-- `3` : reconstruction par arbre quaternaire
+- `1`: linked-list based reconstruction
+- `2`: hash-table based reconstruction
+- `3`: quadtree based reconstruction
 
-Exemple :
+Example:
 
 ```bash
 ./ReconstitueReseau 00014_burma.cha 2
 ```
 
-Ici :
-- `00014_burma.cha` est cherche dans `data/`
-- `2` signifie : reconstruction par table de hachage
+Here:
+- `00014_burma.cha` is looked up in `data/`
+- `2` means reconstruction using a hash table
 
-## Utilisation detaillee
+## Detailed Usage
 
-Toutes les commandes ci-dessous sont a lancer depuis `implementation/`.
+All commands below are meant to be run from `implementation/`.
 
-### 1. Lire et visualiser un fichier de chaines
+### 1. Read and visualize a chain file
 
 ```bash
 ./ChaineMain 00014_burma.cha copie_burma.res
@@ -98,24 +100,25 @@ Toutes les commandes ci-dessous sont a lancer depuis `implementation/`.
 ./ChaineMain 07397_pla.cha copie_pla.res
 ```
 
-Cette commande :
-- lit `data/00014_burma.cha`
-- reconstruit en memoire la structure `Chaines`
-- genere `visualizations/00014_burma.html`
-- reecrit les chaines dans `results/copie_00014_burma.res`
+This command:
+- reads `data/00014_burma.cha`
+- reconstructs the `Chaines` structure in memory
+- generates `visualizations/00014_burma.html`
+- writes the chain copy to `results/copie_00014_burma.res`
 
-Donc :
-- entree : `data/00014_burma.cha`
-- sortie texte : `results/copie_00014_burma.res`
-- sortie visuelle : `visualizations/00014_burma.html`
+So:
+- input: `data/00014_burma.cha`
+- text output: `results/copie_00014_burma.res`
+- visual output: `visualizations/00014_burma.html`
 
-`ChaineMain` sert surtout a verifier la lecture du fichier `.cha` et a visualiser les chaines d'origine avant reconstruction du reseau.
+`ChaineMain` is mainly used to verify `.cha` parsing and visualize the original chains before network reconstruction.
 
-- `00014_burma.cha` produit `copie_00014_burma.res`
-- `07397_pla.cha` produit `copie_07397_pla.res`
-- `05000_USA-road-d-NY.cha` produit `copie_05000_USA-road-d-NY.res`
+Automatic copy naming:
+- `00014_burma.cha` -> `copie_00014_burma.res`
+- `07397_pla.cha` -> `copie_07397_pla.res`
+- `05000_USA-road-d-NY.cha` -> `copie_05000_USA-road-d-NY.res`
 
-### 2. Reconstruire un reseau avec une liste chainee
+### 2. Reconstruct a network with linked lists
 
 ```bash
 ./ReconstitueReseau 00014_burma.cha 1
@@ -123,18 +126,18 @@ Donc :
 ./ReconstitueReseau 05000_USA-road-d-NY.cha 1
 ```
 
-Exemples :
-- `00014_burma.cha` : petite instance pour une verification rapide, sortie `visualizations/00014_burma.html` et `results/00014_burma_ReseauListe.res`
-- `07397_pla.cha` : instance intermediaire, sortie `visualizations/07397_pla.html` et `results/07397_pla_ReseauListe.res`
-- `05000_USA-road-d-NY.cha` : jeu de donnees plus volumineux, sortie `visualizations/05000_USA-road-d-NY.html` et `results/05000_USA-road-d-NY_ReseauListe.res`
+Examples:
+- `00014_burma.cha`: quick verification instance, outputs `visualizations/00014_burma.html` and `results/00014_burma_ReseauListe.res`
+- `07397_pla.cha`: intermediate case, outputs `visualizations/07397_pla.html` and `results/07397_pla_ReseauListe.res`
+- `05000_USA-road-d-NY.cha`: larger dataset, outputs `visualizations/05000_USA-road-d-NY.html` and `results/05000_USA-road-d-NY_ReseauListe.res`
 
-Pour `./ReconstitueReseau 00014_burma.cha 1` :
-- lit `data/00014_burma.cha`
-- reconstruit le reseau avec une liste chainee
-- genere `visualizations/00014_burma.html`
-- ecrit `results/00014_burma_ReseauListe.res`
+For `./ReconstitueReseau 00014_burma.cha 1`:
+- reads `data/00014_burma.cha`
+- reconstructs the network with linked lists
+- generates `visualizations/00014_burma.html`
+- writes `results/00014_burma_ReseauListe.res`
 
-### 3. Reconstruire un reseau avec une table de hachage
+### 3. Reconstruct a network with a hash table
 
 ```bash
 ./ReconstitueReseau 00014_burma.cha 2
@@ -142,18 +145,18 @@ Pour `./ReconstitueReseau 00014_burma.cha 1` :
 ./ReconstitueReseau 05000_USA-road-d-NY.cha 2
 ```
 
-Exemples :
-- `00014_burma.cha` : sortie `visualizations/00014_burma.html` et `results/00014_burma_ReseauHachage.res`
-- `07397_pla.cha` : sortie `visualizations/07397_pla.html` et `results/07397_pla_ReseauHachage.res`
-- `05000_USA-road-d-NY.cha` : sortie `visualizations/05000_USA-road-d-NY.html` et `results/05000_USA-road-d-NY_ReseauHachage.res`
+Examples:
+- `00014_burma.cha`: outputs `visualizations/00014_burma.html` and `results/00014_burma_ReseauHachage.res`
+- `07397_pla.cha`: outputs `visualizations/07397_pla.html` and `results/07397_pla_ReseauHachage.res`
+- `05000_USA-road-d-NY.cha`: outputs `visualizations/05000_USA-road-d-NY.html` and `results/05000_USA-road-d-NY_ReseauHachage.res`
 
-Pour `./ReconstitueReseau 00014_burma.cha 2` :
-- lit `data/00014_burma.cha`
-- reconstruit le reseau avec une table de hachage de taille `6000`
-- genere `visualizations/00014_burma.html`
-- ecrit `results/00014_burma_ReseauHachage.res`
+For `./ReconstitueReseau 00014_burma.cha 2`:
+- reads `data/00014_burma.cha`
+- reconstructs the network using a hash table of size `6000`
+- generates `visualizations/00014_burma.html`
+- writes `results/00014_burma_ReseauHachage.res`
 
-### 4. Reconstruire un reseau avec un arbre quaternaire
+### 4. Reconstruct a network with a quadtree
 
 ```bash
 ./ReconstitueReseau 00014_burma.cha 3
@@ -161,65 +164,65 @@ Pour `./ReconstitueReseau 00014_burma.cha 2` :
 ./ReconstitueReseau 05000_USA-road-d-NY.cha 3
 ```
 
-Exemples :
-- `00014_burma.cha` : sortie `visualizations/00014_burma.html` et `results/00014_burma_ReseauArbre.res`
-- `07397_pla.cha` : sortie `visualizations/07397_pla.html` et `results/07397_pla_ReseauArbre.res`
-- `05000_USA-road-d-NY.cha` : sortie `visualizations/05000_USA-road-d-NY.html` et `results/05000_USA-road-d-NY_ReseauArbre.res`
+Examples:
+- `00014_burma.cha`: outputs `visualizations/00014_burma.html` and `results/00014_burma_ReseauArbre.res`
+- `07397_pla.cha`: outputs `visualizations/07397_pla.html` and `results/07397_pla_ReseauArbre.res`
+- `05000_USA-road-d-NY.cha`: outputs `visualizations/05000_USA-road-d-NY.html` and `results/05000_USA-road-d-NY_ReseauArbre.res`
 
-Pour `./ReconstitueReseau 00014_burma.cha 3` :
-- lit `data/00014_burma.cha`
-- reconstruit le reseau avec un arbre quaternaire
-- genere `visualizations/00014_burma.html`
-- ecrit `results/00014_burma_ReseauArbre.res`
+For `./ReconstitueReseau 00014_burma.cha 3`:
+- reads `data/00014_burma.cha`
+- reconstructs the network with a quadtree
+- generates `visualizations/00014_burma.html`
+- writes `results/00014_burma_ReseauArbre.res`
 
-### 5. Mesurer les temps de calcul
+### 5. Measure execution times
 
 ```bash
 ./TempsCalcul
 ```
 
-Cette commande :
-- commence par lire `data/00014_burma.cha`
-- ecrit dans `results/TempsCalcul.txt` une premiere comparaison courte sur cette petite instance
-- genere ensuite plusieurs chaines aleatoires de tailles croissantes
-- compare sur ces chaines aleatoires les temps de reconstruction pour la liste, l'arbre et plusieurs tailles de table de hachage
-- ecrit aussi ces comparaisons detaillees dans `results/TempsCalcul.txt`
-- construit un graphe a partir de ces mesures sur chaines aleatoires
-- affiche ce graphe a la fin
-- enregistre aussi ce graphe dans `results/TempsCalculComparaison.png`
+This command:
+- first reads `data/00014_burma.cha`
+- writes an initial short comparison for this small instance into `results/TempsCalcul.txt`
+- then generates random chains with increasing sizes
+- compares reconstruction times on these random chains for linked lists, quadtrees, and several hash-table sizes
+- writes these detailed comparisons into `results/TempsCalcul.txt`
+- builds a graph from those random-chain measurements
+- displays the graph at the end
+- also saves it as `results/TempsCalculComparaison.png`
 
-Donc :
-- entree initiale : `data/00014_burma.cha`
-- travail principal : comparaison experimentale sur des chaines aleatoires
-- sortie texte : `results/TempsCalcul.txt`
-- sortie graphique affichee : fenetre `gnuplot`
-- sortie graphique enregistree : `results/TempsCalculComparaison.png`
+So:
+- initial input: `data/00014_burma.cha`
+- main workload: experimental comparison on random chains
+- text output: `results/TempsCalcul.txt`
+- displayed graph: `gnuplot` window
+- saved graph: `results/TempsCalculComparaison.png`
 
-### 6. Tester la reorganisation sur plusieurs instances
+### 6. Test network reorganization on multiple instances
 
 ```bash
 ./GrapheMain
 ```
 
-Cette commande :
-- lit `data/00014_burma.cha`
-- lit `data/07397_pla.cha`
-- lit `data/05000_USA-road-d-NY.cha`
-- reconstruit les reseaux avec l'arbre quaternaire
-- teste la fonction `reorganiseReseau` pour plusieurs valeurs de `gamma`
-- affiche les resultats dans le terminal
+This command:
+- reads `data/00014_burma.cha`
+- reads `data/07397_pla.cha`
+- reads `data/05000_USA-road-d-NY.cha`
+- reconstructs the networks with the quadtree approach
+- tests `reorganiseReseau` for multiple `gamma` values
+- prints the results in the terminal
 
-Donc :
-- entrees : plusieurs fichiers de `data/`
-- sortie : affichage console
-- pas de nouveau `.res` ni de nouveau `.html` produits par ce programme
+So:
+- inputs: multiple files from `data/`
+- output: console display
+- no additional `.res` or `.html` file is produced by this program
 
-## Difference entre `ChaineMain` et `ReconstitueReseau`
+## Difference Between `ChaineMain` and `ReconstitueReseau`
 
-`ChaineMain` travaille au niveau des chaines d'entree : il lit un fichier `.cha`, verifie sa structure, l'affiche et le reecrit.
+`ChaineMain` works at the chain-input level: it reads a `.cha` file, checks its structure, displays it, and writes it back.
 
-`ReconstitueReseau` va plus loin : il part du meme type de fichier `.cha`, mais reconstruit ensuite un vrai reseau avec noeuds, liaisons et commodites, puis produit une visualisation du reseau et un fichier `.res`.
+`ReconstitueReseau` goes further: it starts from the same `.cha` input, but then reconstructs an actual network with nodes, links, and commodities, and produces both a network visualization and a `.res` file.
 
-En bref :
-- `ChaineMain` visualise les donnees d'entree
-- `ReconstitueReseau` visualise le resultat de la reconstruction
+In short:
+- `ChaineMain` visualizes the input data
+- `ReconstitueReseau` visualizes the reconstruction result
