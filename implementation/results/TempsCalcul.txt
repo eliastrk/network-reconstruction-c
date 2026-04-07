@@ -1,0 +1,39 @@
+ReconstitueReseauListe: 0.000006 secondes
+ReconstitueReseauArbre: 0.000007 secondes
+ReconstitueReseauHachage 50: 0.000012 secondes
+ReconstitueReseauHachage 100: 0.000009 secondes
+ReconstitueReseauHachage 500: 0.000013 secondes
+ReconstitueReseauHachage 1000: 0.000014 secondes
+
+Comparaison sur des chaines aleatoires
+
+nbChaines : 500, , nbPoints : 50000
+Hachage 50 : 0.050s, Hachage 100 : 0.023s, Hachage 500 : 0.030s, Hachage 1000 : 0.029s, Arbre : 0.167s, Liste : 1.389s
+
+nbChaines : 1000, , nbPoints : 100000
+Hachage 50 : 0.111s, Hachage 100 : 0.080s, Hachage 500 : 0.063s, Hachage 1000 : 0.047s, Arbre : 0.223s, Liste : 2.275s
+
+nbChaines : 1500, , nbPoints : 150000
+Hachage 50 : 0.470s, Hachage 100 : 0.456s, Hachage 500 : 0.434s, Hachage 1000 : 0.385s, Arbre : 0.439s, Liste : 3.756s
+
+nbChaines : 2000, , nbPoints : 200000
+Hachage 50 : 1.106s, Hachage 100 : 0.827s, Hachage 500 : 0.699s, Hachage 1000 : 0.644s, Arbre : 1.135s, Liste : 10.554s
+
+nbChaines : 2500, , nbPoints : 250000
+Hachage 50 : 1.743s, Hachage 100 : 1.459s, Hachage 500 : 1.067s, Hachage 1000 : 0.976s, Arbre : 1.495s, Liste : 12.882s
+
+nbChaines : 3000, , nbPoints : 300000
+Hachage 50 : 2.040s, Hachage 100 : 1.928s, Hachage 500 : 1.619s, Hachage 1000 : 1.482s, Arbre : 1.811s, Liste : 14.944s
+
+nbChaines : 3500, , nbPoints : 350000
+Hachage 50 : 2.205s, Hachage 100 : 2.836s, Hachage 500 : 1.847s, Hachage 1000 : 2.278s, Arbre : 1.316s, Liste : 18.786s
+
+nbChaines : 4000, , nbPoints : 400000
+Hachage 50 : 4.002s, Hachage 100 : 3.879s, Hachage 500 : 3.576s, Hachage 1000 : 3.131s, Arbre : 3.557s, Liste : 24.941s
+
+nbChaines : 4500, , nbPoints : 450000
+Hachage 50 : 5.141s, Hachage 100 : 4.719s, Hachage 500 : 4.159s, Hachage 1000 : 3.914s, Arbre : 4.664s, Liste : 28.554s
+
+nbChaines : 5000, , nbPoints : 500000
+Hachage 50 : 4.040s, Hachage 100 : 3.853s, Hachage 500 : 3.285s, Hachage 1000 : 2.863s, Arbre : 3.098s, Liste : 30.350s
+

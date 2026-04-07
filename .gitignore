@@ -1,0 +1,19 @@
+# Editor
+.vscode/
+
+# C build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*~
+
+# Generated visual outputs
+*.html
+*.svg
+
+# Executables produced by make in implementation/
+implementation/ChaineMain
+implementation/ReconstitueReseau
+implementation/TempsCalcul
+implementation/GrapheMain
