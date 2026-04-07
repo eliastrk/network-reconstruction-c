@@ -1,4 +1,4 @@
-# Projet SDD S4
+# Network Reconstruction Project in C
 
 Projet de structures de donnees en C centre sur la reconstruction et l'analyse d'un reseau a partir de chaines de points.
 
